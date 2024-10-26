@@ -9,7 +9,7 @@ const ProfileComponent = () => {
     (state) => state.usersReducer
   );
   const dispatch = useDispatch();
-  const user = users?.find((user) => user?.id === selectedUserId);
+  const user = users?.find((user) => user?.id === selectedUserId) || users[0];
   const content = (
     <StyledProfilePopover>
       <div className="top-header">
@@ -31,10 +31,7 @@ const ProfileComponent = () => {
         </i>
         <p>{user?.name}</p>
         <div style={{ display: "flex" }}>
-          <i
-            class="fa-solid fa-lock"
-            style={{ position: "relative", display: "inline-block" }}
-          ></i>
+          <i class="fa-solid fa-lock" style={{ position: "relative" }}></i>
           <p>End to end encryption</p>
         </div>
       </div>

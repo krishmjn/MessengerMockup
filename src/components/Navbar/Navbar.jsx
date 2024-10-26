@@ -17,12 +17,8 @@ const Navbar = () => {
       />
 
       <div className="nav-icons">
-        <Badge count={5} offset={[5, 0]}>
-          <FontAwesomeIcon icon={faBell} className="icon" />
-        </Badge>
-        <Badge count={3} offset={[5, 0]}>
-          <FontAwesomeIcon icon={faEnvelope} className="icon" />
-        </Badge>
+        <i class="fa-solid fa-bell icon"></i>
+        <i class="fa-solid fa-envelope icon"></i>
         <StyledImageProfile src="https://randomuser.me/api/portraits/women/91.jpg " />
       </div>
     </StyledNavbar>

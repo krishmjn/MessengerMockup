@@ -4,7 +4,7 @@ export const StyledProfiles = styled.div`
   overflow-y: scroll;
   width: 22%;
   height: 600px;
-  border-radius: 20px;
+  ${"" /* border-radius: 20px; */}
 `;
 
 // export const StyledProfile = styled.div`
@@ -28,7 +28,7 @@ export const StyledNavbar = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 10px 20px;
-  background-color: black;
+  background-color: #1877f2;
   color: white;
   font-size: 16px;
 
@@ -64,13 +64,14 @@ export const StyledNavbar = styled.div`
 
 export const MessageDiv = styled.div`
   display: flex;
-  margin: 40px auto;
-  background-color: black;
-  color: white;
+  margin: 30px auto;
+  background-color: white;
+  color: black;
   height: 100%;
   width: 85%;
   margin-x: auto;
-  border-radius: 20px;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.12);
 `;
 
 export const ChatDiv = styled.div`
@@ -82,11 +83,11 @@ export const ChatDiv = styled.div`
 
 export const ChatHeader = styled.div`
   align-items: center;
-  border-bottom: 1px solid gray;
   height: 60px;
   width: 100%;
   display: flex;
-  ${"" /* text-align: center; */}
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.1);
+
   justify-content: space-between;
   position: relative;
   .left {
@@ -107,7 +108,7 @@ export const ChatHeader = styled.div`
       text-align: center;
       border-radius: 10%;
       font-size: 22px;
-
+      color: #1877f2;
       &:hover {
         color: gray;
       }
@@ -130,33 +131,34 @@ export const ChatFooter = styled.div`
   width: 100%;
   text-align: center;
   input {
-    width: 92%;
+    width: 84%;
     margin-right: 10px;
     border-radius: 20px;
-    border: none;
-    padding: 4px;
+    border: 1px solid black;
+    padding: 6px;
+    position: relative;
   }
-  i {
+  .send {
+    display: flex;
     cursor: pointer;
     font-size: 22px;
-    margin-left: 10px;
-    margin-top: 10px;
+    position: absolute;
+    right: 20px;
+    top: 3.5px;
+    color: #1877f2;
+    gap: 8px;
+  }
+  .attachments {
+    display: flex;
+    gap: 10px;
+    color: #1877f2;
+    position: absolute;
+    left: 0px;
+    top: 3.5px;
+
+    font-size: 22px;
   }
 `;
-
-// export const StyledProfilePopover = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   position: relative;
-//   width: 200px;
-//   .top-header {
-//     i {
-//       position: absolute;
-//       right: 0;
-//       top: 10px;
-//     }
-//   }
-// `;
 
 export const StyledStatusIcon = styled.div`
   height: 10px;
@@ -204,7 +206,7 @@ export const StyledProfilePopover = styled.div`
     p {
       margin: 4px 0;
       font-size: 14px;
-      color: #333;
+      color: black;
     }
   }
 `;
@@ -213,14 +215,14 @@ export const StyledProfile = styled.div`
   align-items: center;
   display: flex;
   background-color: #black;
-  color: #f5f5f5;
+  color: black;
   padding: 12px;
   cursor: pointer;
   position: relative;
-  border-radius: 8px;
+  ${"" /* border-radius: 8px; */}
 
   &:hover {
-    background-color: #444;
+    background-color: #888;
   }
 
   p {

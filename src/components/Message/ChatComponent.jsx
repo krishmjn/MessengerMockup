@@ -54,8 +54,15 @@ const ChatComponent = () => {
       </ChatHeader>
       <ChatSection></ChatSection>
       <ChatFooter>
+        <div className="attachments">
+          <i class="fa-solid fa-circle-plus"></i>
+          <i class="fa-solid fa-image"></i>
+        </div>
         <input></input>
-        <i class="fa-solid fa-location-arrow"></i>
+        <div className="send">
+          <i class="fa-solid fa-face-smile"></i>
+          <i class="fa-solid fa-location-arrow"></i>
+        </div>
       </ChatFooter>
     </ChatDiv>
   );
