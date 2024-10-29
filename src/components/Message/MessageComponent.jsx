@@ -8,18 +8,6 @@ import {
 import { StyledProfile, StyledProfiles, StyledStatusIcon } from "./styles";
 import { getRandomAvatarUrl } from "./helper";
 
-// Function to get a random avatar URL
-// const getRandomAvatarUrl = (gender) => {
-//   if (gender === "female")
-//     return `https://randomuser.me/api/portraits/women/${Math.floor(
-//       Math.random() * 100
-//     )}.jpg`;
-//   else
-//     return `https://randomuser.me/api/portraits/men/${Math.floor(
-//       Math.random() * 100
-//     )}.jpg`;
-// };
-
 const MessageList = () => {
   const dispatch = useDispatch();
   const { users, page } = useSelector((state) => state.usersReducer);
@@ -66,25 +54,23 @@ const MessageList = () => {
   };
 
   return (
-    <StyledProfiles onScroll={handleScroll}>
+    <StyledProfiles>
       {users
-        .slice(0)
+        .slice(0, 9) // Only take the first 9 users
         .reverse()
         .map((user) => (
           <StyledProfile key={user.id} onClick={() => handleUserClick(user.id)}>
             <img
-              src={user.avatar} // Use the avatar stored in the state
+              src={user.avatar}
               alt={user.name}
               style={{
                 width: "40px",
                 height: "40px",
                 borderRadius: "50%",
                 position: "relative",
-              }} // Style for the avatar
-              onClick={() => handleImageClick(user.avatar)} // Call function on click
+              }}
             />
             {user?.status === "active" && <StyledStatusIcon />}
-
             <p>{user.name}</p>
           </StyledProfile>
         ))}

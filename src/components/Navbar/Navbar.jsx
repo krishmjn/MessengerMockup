@@ -8,7 +8,7 @@ import { StyledImageProfile, StyledNavbar } from "../Message/styles";
 const Navbar = () => {
   return (
     <StyledNavbar>
-      <div className="logo">Mock-Messenger</div>
+      <div className="logo">Chat</div>
 
       <Input.Search
         placeholder="Search..."

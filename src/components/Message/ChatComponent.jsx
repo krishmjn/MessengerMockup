@@ -7,10 +7,18 @@ import {
   StyledStatusIcon,
 } from "./styles";
 import { useDispatch, useSelector } from "react-redux";
-import { PROFILE_STATE, SELECt_USER } from "./store/action";
+import {
+  FETCH_MORE_USERS_SUCCESS,
+  FETCH_USERS_SUCCESS,
+  PROFILE_STATE,
+  SELECt_USER,
+} from "./store/action";
+import { getRandomAvatarUrl } from "./helper";
 
 const ChatComponent = () => {
-  const { selectedUserId, users } = useSelector((state) => state.usersReducer);
+  const { selectedUserId, users, page } = useSelector(
+    (state) => state.usersReducer
+  );
   const dispatch = useDispatch();
 
   console.log(selectedUserId, users, "state");
@@ -18,6 +26,36 @@ const ChatComponent = () => {
 
   const selectedUser = user ? user : users[0];
   console.log(user);
+  const fetchUsers = async (pageNum) => {
+    const response = await fetch(
+      `https://gorest.co.in/public/v1/users?page=${pageNum}`
+    );
+    const data = await response.json();
+
+    const usersWithAvatars = data.data.map((user) => ({
+      ...user,
+      avatar: getRandomAvatarUrl(user.gender),
+    }));
+
+    if (pageNum === 1) {
+      dispatch({
+        type: FETCH_USERS_SUCCESS,
+        payload: { data: usersWithAvatars },
+      });
+    } else {
+      dispatch({
+        type: FETCH_MORE_USERS_SUCCESS,
+        payload: { data: usersWithAvatars },
+      });
+    }
+  };
+  const handleScroll = (e) => {
+    console.log("SCroll");
+    if (e.target.scrollTop === 0) {
+      fetchUsers(page);
+    }
+  };
+
   return (
     <ChatDiv>
       <ChatHeader>
@@ -52,16 +90,39 @@ const ChatComponent = () => {
           ></i>
         </div>
       </ChatHeader>
-      <ChatSection></ChatSection>
+      <ChatSection onScroll={handleScroll}>
+        {users?.reverse().map((user, index) => (
+          <div
+            key={user.id}
+            className={index % 2 === 0 ? "incoming" : "outgoing"}
+          >
+            {index % 2 === 0 && (
+              <img
+                src={selectedUser.avatar}
+                alt={user.name}
+                style={{
+                  width: "35px",
+                  height: "35px",
+                  borderRadius: "50%",
+                  position: "relative",
+                  marginRight: "10px",
+                }}
+              />
+            )}
+            <p>{user?.name}</p>
+          </div>
+        ))}
+      </ChatSection>
+
       <ChatFooter>
         <div className="attachments">
-          <i class="fa-solid fa-circle-plus"></i>
-          <i class="fa-solid fa-image"></i>
+          <i className="fa-solid fa-circle-plus"></i>
+          <i className="fa-solid fa-image"></i>
         </div>
         <input></input>
         <div className="send">
-          <i class="fa-solid fa-face-smile"></i>
-          <i class="fa-solid fa-location-arrow"></i>
+          <i className="fa-solid fa-face-smile"></i>
+          <i className="fa-solid fa-location-arrow"></i>
         </div>
       </ChatFooter>
     </ChatDiv>

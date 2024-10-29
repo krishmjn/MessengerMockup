@@ -122,7 +122,13 @@ export const ChatHeader = styled.div`
     margin: 8px;
   }
 `;
-export const ChatSection = styled.div``;
+export const ChatSection = styled.div`
+  width: 100%;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+`;
 
 export const ChatFooter = styled.div`
   margin: 10px 10px;
@@ -130,6 +136,7 @@ export const ChatFooter = styled.div`
   bottom: 0;
   width: 100%;
   text-align: center;
+
   input {
     width: 84%;
     margin-right: 10px;
